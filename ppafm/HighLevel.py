@@ -170,7 +170,7 @@ def computeLJ( geomFile, speciesFile, save_format=None, computeVpot=False, Fmax=
     else:
         cLJs = PPU.getAtomsLJ( iPP, iZs, FFparams )
         core.getLenardJonesFF( Rs, cLJs ) # THE MAIN STUFF HERE
-    # --- post porces FFs
+    # --- post process FFs
     if Fmax is not  None:
         if(verbose>0): print("Clamp force >", Fmax)
         io.limit_vec_field( FF, Fmax=Fmax )
