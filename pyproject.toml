@@ -73,3 +73,6 @@ push = true
 
 [tool.cibuildwheel]
 skip = ["pp*", "*-manylinux_i686", "*-musllinux*", '*-win32']
+
+[tool.cibuildwheel.macos]
+archs = ["x86_64", "arm64"]
