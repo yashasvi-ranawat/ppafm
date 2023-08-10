@@ -226,13 +226,13 @@ def main():
                 LCPD = -LCPD_b/(2*LCPD_a)
                 PPPlot.plotImages(
                     "./LCPD"+atoms_str+cbar_str, LCPD,  slices = list(range( 0, len(LCPD))), zs=zTips+PPU.params['Amplitude']/2.0,
-                    extent=extent,cmap=PPU.params['colorscale_kpfm'], atoms=atoms, bonds=bonds, atomSize=atomSize, cbar=opt_dict['cbar'], symetric_map=True ,V0=args.V0
+                    extent=extent,cmap=PPU.params['colorscale_kpfm'], atoms=atoms, bonds=bonds, atomSize=atomSize, cbar=opt_dict['cbar'], symmetric_map=True ,V0=args.V0
                 )
                 PPPlot.plotImages(
                     "./_Asym-LCPD"+atoms_str+cbar_str, LCPD,  slices = list(range( 0, len(LCPD))), zs=zTips+PPU.params['Amplitude']/2.0,
-                    extent=extent,cmap=PPU.params['colorscale_kpfm'], atoms=atoms, bonds=bonds, atomSize=atomSize, cbar=opt_dict['cbar'], symetric_map=False
+                    extent=extent,cmap=PPU.params['colorscale_kpfm'], atoms=atoms, bonds=bonds, atomSize=atomSize, cbar=opt_dict['cbar'], symmetric_map=False
                 )
-                io.save_scal_field('./LCPD_HzperV', LCPD, lvec,data_format=args.output_format , head = atomic_info_or_head , atomic_info = atomic_info_or_head)
+                io.save_scal_field('./LCPD', LCPD, lvec,data_format=args.output_format , head = atomic_info_or_head , atomic_info = atomic_info_or_head)
                 if opt_dict['WSxM']:
                     print(" printing LCPD_b into WSxM files :")
                     io.saveWSxM_3D( "./LCPD"+atoms_str , LCPD , extent , slices=None)

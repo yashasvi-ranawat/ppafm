@@ -57,11 +57,11 @@ def plotImages(
     prefix, F, slices,
     extent=None, zs = None, figsize=default_figsize,
     cmap=default_cmap, interpolation=default_interpolation, vmin=None, vmax=None, cbar=False,
-    atoms=None, bonds=None, atomSize=default_atom_size, symetric_map=False, V0=0.0
+    atoms=None, bonds=None, atomSize=default_atom_size, symmetric_map=False, V0=0.0
     ):
     for ii,i in enumerate(slices):
         print(" plotting ", i)
-        if symetric_map:
+        if symmetric_map:
             limit = max(abs(np.min(F[i]-V0)), abs(np.max(F[i]-V0)) )
             vmin = -limit+V0
             vmax = limit+V0
