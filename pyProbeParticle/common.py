@@ -13,7 +13,7 @@ CoulombConst         = -14.3996448915;
 params={
 'PBC': True,
 'nPBC' :       np.array( [      1,        1,        1 ] ),
-'gridN':       np.array( [ -1,     -1,   -1   ] ).astype(np.int),
+'gridN':       np.array( [ -1,     -1,   -1   ] ).astype(int),
 'gridA':       np.array( [ 12.798,  -7.3889,  0.00000 ] ),
 'gridB':       np.array( [ 12.798,   7.3889,  0.00000 ] ),
 'gridC':       np.array( [      0,        0,      5.0 ] ),
@@ -42,7 +42,7 @@ params={
 'scanStep': np.array( [ 0.10, 0.10, 0.10 ] ),
 'scanMin': np.array( [   0.0,     0.0,    5.0 ] ),
 'scanMax': np.array( [  20.0,    20.0,    8.0 ] ),
-'kCantilever'  :  1800.0, 
+'kCantilever'  :  1800.0,
 'f0Cantilever' :  30300.0,
 'Amplitude'    :  1.0,
 'plotSliceFrom':  16,
@@ -75,7 +75,7 @@ def Fz2df( F, dz=0.1, k0 = params['kCantilever'], f0=params['f0Cantilever'], n=4
 # ==============================  server interface file I/O
 # ==============================
 
-# overide default parameters by parameters read from a file 
+# overide default parameters by parameters read from a file
 def loadParams( fname,FFparams=None ):
     print(" >> OVERWRITING SETTINGS by "+fname)
     fin = open(fname,'r')
@@ -111,10 +111,10 @@ def loadParams( fname,FFparams=None ):
                         params[key] = words[1]
                         print(key, params[key], words[1])
                 elif isinstance(val, np.ndarray ):
-                    if val.dtype == np.float:
+                    if val.dtype == float:
                         params[key] = np.array([ float(words[1]), float(words[2]), float(words[3]) ])
                         print(key, params[key], words[1], words[2], words[3])
-                    elif val.dtype == np.int:
+                    elif val.dtype == int:
                         print(key)
                         params[key] = np.array([ int(words[1]), int(words[2]), int(words[3]) ])
                         print(key, params[key], words[1], words[2], words[3])
@@ -128,7 +128,7 @@ def loadParams( fname,FFparams=None ):
         params["gridN"][0]=round(np.linalg.norm(params["gridA"])*10)
         params["gridN"][1]=round(np.linalg.norm(params["gridB"])*10)
         params["gridN"][2]=round(np.linalg.norm(params["gridC"])*10)
-        
+
     try:
             params['Catom'] = int(params['Catom'])
     except:
@@ -186,7 +186,7 @@ def apply_options(opt=None):
 # load atoms species parameters form a file ( currently used to load Lenard-Jones parameters )
 def loadSpecies( fname ):
     FFparams=np.genfromtxt(fname,dtype=[('rmin',np.float64),('epsilon',np.float64),
-                                            ('atom',np.int),('symbol', '|S10')],
+                                            ('atom',int),('symbol', '|S10')],
                                             usecols=[0,1,2,3])
     return FFparams
 
