@@ -1,48 +1,50 @@
-
 import numpy as np
 
-def CGx( A, x, p, E ):
-    Ap  = np.dot( A, p )
-    #print "Ap.shape, p.shape ", Ap.shape, p.shape
-    a   = E / np.dot( p, Ap )
-    x  += p * a
+
+def CGx(A, x, p, E):
+    Ap = np.dot(A, p)
+    # print "Ap.shape, p.shape ", Ap.shape, p.shape
+    a = E / np.dot(p, Ap)
+    x += p * a
     return Ap, a
 
-def CGr( r, Ap, a ):
+
+def CGr(r, Ap, a):
     r -= Ap * a
-    E  = np.dot( r, r )
+    E = np.dot(r, r)
     return E
 
-def CGp( p, r, Enew, Eold ):
-    p *= (Enew/Eold)
+
+def CGp(p, r, Enew, Eold):
+    p *= Enew / Eold
     p += r
 
-def CGstep( A, x, p, r, Enew, Eold ):
-    CGp( p, r, Enew, Eold )
-    Ap, a  = CGx( A, x, p, Enew )
-    Enewer = CGr( r, Ap, a )
+
+def CGstep(A, x, p, r, Enew, Eold):
+    CGp(p, r, Enew, Eold)
+    Ap, a = CGx(A, x, p, Enew)
+    Enewer = CGr(r, Ap, a)
     return Enewer, Enew
 
-def CG( A, b, x, nMaxIter=10, Econv=1e-10, bPrint=True ):
+
+def CG(A, b, x, nMaxIter=10, Econv=1e-10, bPrint=True):
     E2conv = Econv**2
-    r = b - np.dot( A, x )
+    r = b - np.dot(A, x)
     p = r.copy()
-    #print "r.shape ", r.shape
-    Eold  = np.dot( r, r )
-    Ap, a = CGx( A, x, p, Eold )
-    Enew  = CGr( r, Ap, a )
+    # print "r.shape ", r.shape
+    Eold = np.dot(r, r)
+    Ap, a = CGx(A, x, p, Eold)
+    Enew = CGr(r, Ap, a)
     for itr in range(nMaxIter):
-        Enew,Eold = CGstep( A, x, p, r, Enew, Eold )
+        Enew, Eold = CGstep(A, x, p, r, Enew, Eold)
         if bPrint:
-            print(" CG[%i] error:  " %itr, np.sqrt(Enew))
+            print(" CG[%i] error:  " % itr, np.sqrt(Enew))
         if Enew < E2conv:
-              break
+            break
     return x
 
 
-
-
-'''
+"""
 def CG( x0, A, C, b, mit, stol=1e-8, bbA, bbC ):
     x = x0.copy(); ha = 0; hp = 0; hpp = 0; ra = 0; rp = 0; rpp = 0; u = 0; k = 0;
     ra = b - bbA(A, x0);
@@ -67,13 +69,10 @@ def CG( x0, A, C, b, mit, stol=1e-8, bbA, bbC ):
         a = t / (u' * Au);
         x = x + a * u;
         ra = rp - a * Au;
-'''
+"""
 
 
-
-
-
-'''
+"""
 #https://en.wikipedia.org/wiki/Conjugate_gradient_method
 
 function [x, k] = cgp(x0, A, C, b, mit, stol, bbA, bbC)
@@ -130,4 +129,4 @@ function [x, k] = cgp(x0, A, C, b, mit, stol, bbA, bbC)
                 x = x + a * u;
                 ra = rp - a * Au;
         end;
-'''
+"""
