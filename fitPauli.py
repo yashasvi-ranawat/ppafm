@@ -5,7 +5,7 @@ import os
 import sys
 
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import pyProbeParticle as PPU
 
 # import pyProbeParticle.GridUtils     as GU
@@ -82,8 +82,8 @@ def getIsoArg(zs_, fs, iso=0.01, atom_z=0.0):
         print("(atom_z -zs_[0])", (zs_[1] - zs_[0]))
         print("(zs_[1]-zs_[0])", (zs_[1] - zs_[0]))
         print((x0, f0, dx, df, i, zi, ai))
-        plt.plot(zs_[zi:ai], fs[zi:ai], [zs_[zi], zs_[ai]], [iso, iso])
-        plt.show()
+        # plt.plot(zs_[zi:ai], fs[zi:ai], [zs_[zi], zs_[ai]], [iso, iso])
+        # plt.show()
     return x0 + dx * (iso - f0) / df
 
 
@@ -176,7 +176,7 @@ for i in ilist:
             + " "
             + str(i + 1)
             + " "
-            + FFparams[iZs[i] - 1][4]
+            + str(FFparams[iZs[i] - 1][4])
             + str(i)
             + "\n"
         )
@@ -190,7 +190,7 @@ for i in ilist:
             + " "
             + str(i + 1)
             + " "
-            + FFparams[iZs[i] - 1][4]
+            + str(FFparams[iZs[i] - 1][4])
             + str(i)
             + "\n"
         )
